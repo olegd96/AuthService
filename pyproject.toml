@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "auth-service"
+version = "0.1.0"
+description = "grpc auth service for booking"
+authors = ["Diachkov Oleg <chepalin@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+asyncpg = "^0.30.0"
+sqlalchemy = "^2.0.36"
+asyncio = "^3.4.3"
+alembic = "^1.13.3"
+pydantic = "^2.9.2"
+pydantic-settings = "^2.6.0"
+grpcio-tools = "^1.67.0"
+passlib = "^1.7.4"
+jose = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

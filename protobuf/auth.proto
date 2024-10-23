@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+message SUserReg {
+    string id = 1;
+    string email = 2;
+    string password = 3;
+    string fio = 4;
+    string telephone = 5;
+    bool is_active = 6;
+    bool is_verified = 7;
+    bool is_admin = 8;
+}
+
+message SUserLogin {
+    string username = 1;
+    string password = 2;
+}
+
+message SUserLogOut {
+    string result = 1;
+}
+
+message SUserRequest {
+    string id = 1;
+}
+
+message SUserResponse {
+    string id = 1;
+    string email = 2;
+    string fio = 3;
+    string telephone = 4;
+    bool is_active = 5;
+    bool is_verified = 6;
+    bool is_admin = 7;
+}
+
+message SAllUserResponse {
+    repeated SUserResponse users = 1;
+}
+
+message SToken {
+    string access_token = 1;
+    string refresh_token = 2;
+    string token_type = 3;
+}
+
+message SRefreshToken {
+    string refresh_token = 1;
+}
+
+message SUserUpdate {
+    string email = 1;
+    string fio = 2;
+    string telephone = 3;
+}
+
+message SUserReAuth {
+    string password = 1;
+    string new_password = 2;
+    string new_password_re = 3;
+}
+
+service AuthService {
+    rpc RegUser (SUserReg) returns (SUserResponse);
+    rpc AuthUser (SUserLogin) returns (SToken);
+    rpc RefreshToken (SRefreshToken) returns (SToken);
+    rpc FindUser (SUserRequest) returns (SUserResponse);
+    rpc Logout (SRefreshToken) returns (SUserLogOut);
+    rpc VerifyUser (SUserRequest) returns (SUserResponse);
+    rpc UpdateUser (SUserUpdate) returns (SUserResponse);
+    rpc VerifyUser (SUserResponse) returns (SUserResponse);
+}
